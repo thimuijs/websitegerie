@@ -71,7 +71,7 @@ img { max-width: 100%; display: block; }
 h1, h2, h3 {
   font-weight: 300;
   line-height: 1.2;
-  margin: 0 0 var(--space-4);
+  margin: 0 0 var(--space-3);
 }
 
 h1 { font-size: clamp(2rem, 6vw, 3.25rem); letter-spacing: 0.01em; }
@@ -112,10 +112,10 @@ a:hover { color: var(--gold-light); }
   padding: 0 var(--space-4);
 }
 
-section { padding: var(--space-7) 0; }
+section { padding: var(--space-5) 0; }
 
 @media (min-width: 768px) {
-  section { padding: var(--space-8) 0; }
+  section { padding: var(--space-6) 0; }
   .container { padding: 0 var(--space-5); }
 }
 
@@ -133,7 +133,7 @@ section { padding: var(--space-7) 0; }
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
   color: var(--gold);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
 }
 
 .text-muted { color: var(--white-70); }
@@ -335,7 +335,7 @@ body { padding-bottom: 88px; } /* ruimte voor sticky balk */
 
 /* ---- Hero ---- */
 .hero {
-  padding: var(--space-8) 0;
+  padding: var(--space-6) 0;
   border-bottom: 1px solid var(--white-12);
 }
 .hero .brand-title {
@@ -347,7 +347,7 @@ body { padding-bottom: 88px; } /* ruimte voor sticky balk */
   font-size: clamp(1.125rem, 3vw, 1.5rem);
   color: var(--white-70);
   max-width: 34ch;
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-5);
 }
 .hero-ctas {
   display: flex;
@@ -358,7 +358,7 @@ body { padding-bottom: 88px; } /* ruimte voor sticky balk */
   .hero-ctas { flex-direction: row; }
 }
 @media (min-width: 768px) {
-  .hero { padding: var(--space-9) 0; }
+  .hero { padding: var(--space-7) 0; }
 }
 
 /* ---- Fotografie: strakke rechthoeken, geen filters ---- */
@@ -616,8 +616,8 @@ body { padding-bottom: 88px; } /* ruimte voor sticky balk */
 /* ---- Footer ---- */
 .site-footer {
   border-top: 1px solid var(--white-12);
-  padding: var(--space-7) 0 var(--space-6);
-  margin-top: var(--space-7);
+  padding: var(--space-6) 0 var(--space-5);
+  margin-top: var(--space-5);
 }
 .footer-grid {
   display: grid;
