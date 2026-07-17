@@ -1,0 +1,661 @@
+/* ==========================================================================
+   Gerie's Visspecialiteiten — styles.css
+   Merkgids: antraciet #23262B, goud #C9A227 (schaars), wit. Nunito Sans 300.
+   Hoekig (2–4px), geen gradients, ingetogen animatie (120–220ms).
+   ========================================================================== */
+
+/* ---- Tokens ---- */
+:root {
+  /* Kleur */
+  --anthracite: #23262B;
+  --surface-card: #2C3036;
+  --gold: #C9A227;
+  --gold-light: #D9B54A;
+  --gold-dark: #A88720;
+  --white: #FFFFFF;
+  --white-70: rgba(255, 255, 255, 0.70);
+  --white-45: rgba(255, 255, 255, 0.45);
+  --white-12: rgba(255, 255, 255, 0.12);
+  --white-06: rgba(255, 255, 255, 0.06);
+  --cream: #F6F3EC;
+
+  /* Type */
+  --font-stack: 'Avenir', 'Nunito Sans', system-ui, -apple-system, sans-serif;
+  --tracking-caps: 0.14em;
+
+  /* Spacing (4px-basis) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* Vorm */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-pill: 999px;
+
+  /* Schaduw */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.25);
+  --shadow-raised: 0 8px 24px rgba(0, 0, 0, 0.35);
+
+  /* Animatie */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  --dur-slow: 220ms;
+}
+
+/* ---- Reset & basis ---- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--anthracite);
+  color: var(--white);
+  font-family: var(--font-stack);
+  font-weight: 300;
+  font-size: 1.0625rem; /* 17px — oudere doelgroep, goed leesbaar */
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+h1, h2, h3 {
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 0 0 var(--space-4);
+}
+
+h1 { font-size: clamp(2rem, 6vw, 3.25rem); letter-spacing: 0.01em; }
+h2 { font-size: clamp(1.5rem, 4vw, 2.125rem); }
+h3 { font-size: 1.25rem; }
+
+p { margin: 0 0 var(--space-4); }
+
+a {
+  color: var(--gold);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+a:hover { color: var(--gold-light); }
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--gold);
+  color: var(--anthracite);
+  padding: var(--space-3) var(--space-4);
+  z-index: 100;
+}
+.skip-link:focus { left: 0; }
+
+/* ---- Layout ---- */
+.container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+section { padding: var(--space-7) 0; }
+
+@media (min-width: 768px) {
+  section { padding: var(--space-8) 0; }
+  .container { padding: 0 var(--space-5); }
+}
+
+.divider-gold {
+  border: 0;
+  border-top: 1px solid var(--gold);
+  width: 48px;
+  margin: 0 0 var(--space-5);
+}
+
+/* Eyebrow: caps-label in goud */
+.eyebrow {
+  display: block;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--gold);
+  margin-bottom: var(--space-3);
+}
+
+.text-muted { color: var(--white-70); }
+.text-subtle { color: var(--white-45); }
+
+/* ---- Merknaam (geen logo) ---- */
+.brand {
+  display: inline-flex;
+  flex-direction: column;
+  line-height: 1.15;
+  color: var(--white);
+}
+.brand:hover { color: var(--white); }
+.brand-name {
+  font-size: 1.0625rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+.brand-sub {
+  font-size: 0.75rem;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+}
+
+/* ---- Knoppen ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 48px; /* tap target ≥ 44px */
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  font-family: var(--font-stack);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--dur-base) var(--ease-standard),
+              border-color var(--dur-base) var(--ease-standard),
+              color var(--dur-base) var(--ease-standard);
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--anthracite);
+}
+.btn-primary:hover { background: var(--gold-light); color: var(--anthracite); }
+.btn-primary:active { background: var(--gold-dark); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--white);
+  border-color: var(--white-12);
+}
+.btn-ghost:hover { background: var(--white-06); color: var(--white); }
+
+.btn-outline-gold {
+  background: transparent;
+  color: var(--gold);
+  border-color: var(--gold);
+}
+.btn-outline-gold:hover { background: var(--white-06); color: var(--gold-light); border-color: var(--gold-light); }
+
+.btn-block { width: 100%; }
+
+.icon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.5;
+  flex-shrink: 0;
+}
+.icon-sm { width: 16px; height: 16px; }
+
+/* ---- Badge ---- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-pill);
+  color: var(--gold);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ---- Header / navigatie ---- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--anthracite);
+  border-bottom: 1px solid var(--white-12);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: 64px;
+}
+
+.nav-links {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--space-5);
+  align-items: center;
+}
+.nav-links a {
+  color: var(--white-70);
+  padding: var(--space-3) var(--space-2);
+  display: inline-block;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-links a[aria-current="page"] {
+  color: var(--white);
+  border-bottom: 1px solid var(--gold);
+}
+
+.nav-actions { display: flex; align-items: center; gap: var(--space-3); }
+
+/* Op mobiel: belknop in header als goud-outline (het goudvlak is de sticky balk) */
+.nav-call { display: none; }
+.nav-call-mobile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-md);
+  color: var(--gold);
+}
+.nav-call-mobile:hover { background: var(--white-06); }
+
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  border: 1px solid var(--white-12);
+  border-radius: var(--radius-md);
+  color: var(--white);
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-standard);
+}
+.nav-toggle:hover { background: var(--white-06); }
+
+.mobile-menu {
+  display: none;
+  border-top: 1px solid var(--white-12);
+  padding: var(--space-3) 0 var(--space-5);
+}
+.mobile-menu.is-open { display: block; }
+.mobile-menu ul { list-style: none; margin: 0; padding: 0; }
+.mobile-menu a {
+  display: block;
+  padding: var(--space-4) var(--space-2);
+  color: var(--white);
+  font-size: 1.125rem;
+  border-bottom: 1px solid var(--white-06);
+}
+.mobile-menu a[aria-current="page"] { color: var(--gold); }
+
+@media (min-width: 768px) {
+  .nav-links { display: flex; }
+  .nav-toggle, .mobile-menu, .nav-call-mobile { display: none !important; }
+  .nav-call { display: inline-flex; }
+}
+
+/* ---- Sticky belbalk (mobiel) ---- */
+.sticky-call {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  padding: var(--space-3) var(--space-4);
+  padding-bottom: calc(var(--space-3) + env(safe-area-inset-bottom));
+  background: var(--anthracite);
+  border-top: 1px solid var(--white-12);
+}
+.sticky-call .btn { box-shadow: var(--shadow-raised); }
+
+body { padding-bottom: 88px; } /* ruimte voor sticky balk */
+
+@media (min-width: 768px) {
+  .sticky-call { display: none; }
+  body { padding-bottom: 0; }
+}
+
+/* ---- Hero ---- */
+.hero {
+  padding: var(--space-8) 0;
+  border-bottom: 1px solid var(--white-12);
+}
+.hero .brand-title {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: var(--space-2);
+}
+.hero .slogan {
+  font-size: clamp(1.125rem, 3vw, 1.5rem);
+  color: var(--white-70);
+  max-width: 34ch;
+  margin-bottom: var(--space-6);
+}
+.hero-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+@media (min-width: 560px) {
+  .hero-ctas { flex-direction: row; }
+}
+@media (min-width: 768px) {
+  .hero { padding: var(--space-9) 0; }
+}
+
+/* ---- Fotografie: strakke rechthoeken, geen filters ---- */
+.photo {
+  border: 1px solid var(--white-12);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.photo-strip {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+@media (min-width: 640px) {
+  .photo-strip { grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+}
+.photo-strip .photo img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.photo-caption {
+  color: var(--white-45);
+  font-size: 0.875rem;
+  margin-top: var(--space-2);
+}
+
+/* ---- Foto-placeholder (geen illustraties/gradients) ---- */
+.photo-placeholder {
+  background: var(--surface-card);
+  border: 1px solid var(--white-12);
+  border-radius: var(--radius-md);
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-5);
+  color: var(--white-45);
+  font-size: 0.9375rem;
+}
+@media (min-width: 768px) {
+  .photo-placeholder { min-height: 320px; }
+}
+
+/* ---- Vandaag-blok ---- */
+.today-card {
+  background: var(--surface-card);
+  border: 1px solid var(--white-12);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-card);
+}
+.today-card .today-day {
+  font-size: 1.375rem;
+  margin-bottom: var(--space-1);
+}
+.today-card .today-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  color: var(--white-70);
+  margin: var(--space-3) 0 var(--space-4);
+}
+.today-card .today-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ---- USP's ---- */
+.usp-grid {
+  display: grid;
+  gap: var(--space-4);
+}
+.usp {
+  border-top: 1px solid var(--white-12);
+  padding-top: var(--space-4);
+}
+.usp h3 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+.usp h3 .icon { color: var(--gold); }
+.usp p { color: var(--white-70); margin: 0; }
+@media (min-width: 768px) {
+  .usp-grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+}
+
+/* ---- Review ---- */
+.review {
+  border-left: 1px solid var(--gold);
+  padding-left: var(--space-5);
+  margin: 0;
+}
+.review p {
+  font-size: clamp(1.125rem, 3vw, 1.375rem);
+  line-height: 1.55;
+  margin-bottom: var(--space-3);
+}
+.review footer { color: var(--white-45); font-size: 0.9375rem; }
+
+/* ---- Locatiekaarten ---- */
+.location-grid {
+  display: grid;
+  gap: var(--space-4);
+}
+@media (min-width: 640px) {
+  .location-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-5); }
+}
+@media (min-width: 1024px) {
+  .location-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+.location-card {
+  position: relative;
+  background: var(--surface-card);
+  border: 1px solid var(--white-12);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--dur-base) var(--ease-standard),
+              background-color var(--dur-base) var(--ease-standard);
+}
+.location-card:hover { border-color: var(--gold); }
+.location-card .card-day {
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--gold);
+  margin-bottom: var(--space-2);
+}
+.location-card h3 { margin-bottom: var(--space-1); font-size: 1.375rem; }
+.location-card .card-place { color: var(--white-70); margin-bottom: var(--space-2); }
+.location-card .card-hours {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 1rem;
+}
+.location-card .card-hours .icon { color: var(--gold); }
+
+/* Hele kaart klikbaar via stretched link */
+.card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.card-actions {
+  position: relative; /* boven de stretched link */
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+.card-actions .btn {
+  min-height: 44px;
+  padding: var(--space-2) var(--space-4);
+  font-size: 0.9375rem;
+}
+
+/* ---- Openingstijdenblok (detailpagina) ---- */
+.hours-block {
+  background: var(--surface-card);
+  border: 1px solid var(--white-12);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  text-align: center;
+}
+.hours-block .hours-time {
+  font-size: clamp(2rem, 7vw, 2.75rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  display: block;
+  margin: var(--space-2) 0;
+}
+.hours-block .hours-day {
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--gold);
+}
+
+/* ---- Detail-CTA's ---- */
+.detail-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+@media (min-width: 560px) {
+  .detail-ctas { flex-direction: row; }
+}
+
+/* ---- Kaart-embed ---- */
+.map-embed {
+  border: 1px solid var(--white-12);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.map-embed iframe {
+  display: block;
+  width: 100%;
+  height: 320px;
+  border: 0;
+  filter: grayscale(20%);
+}
+@media (min-width: 768px) {
+  .map-embed iframe { height: 420px; }
+}
+
+/* ---- Andere locaties (detailpagina) ---- */
+.other-locations {
+  display: grid;
+  gap: var(--space-3);
+}
+@media (min-width: 768px) {
+  .other-locations { grid-template-columns: repeat(3, 1fr); }
+}
+.other-location {
+  display: block;
+  background: var(--surface-card);
+  border: 1px solid var(--white-12);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  color: var(--white);
+  transition: border-color var(--dur-base) var(--ease-standard);
+}
+.other-location:hover { border-color: var(--gold); color: var(--white); }
+.other-location .card-day {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--gold);
+  display: block;
+  margin-bottom: var(--space-1);
+}
+.other-location .card-hours-sm {
+  color: var(--white-45);
+  font-size: 0.9375rem;
+}
+
+/* ---- Footer ---- */
+.site-footer {
+  border-top: 1px solid var(--white-12);
+  padding: var(--space-7) 0 var(--space-6);
+  margin-top: var(--space-7);
+}
+.footer-grid {
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 768px) {
+  .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+}
+.site-footer h3 {
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--white-45);
+  margin-bottom: var(--space-3);
+}
+.site-footer ul { list-style: none; margin: 0; padding: 0; }
+.site-footer li { margin-bottom: var(--space-2); }
+.site-footer ul a { color: var(--white-70); display: inline-block; padding: var(--space-1) 0; }
+.site-footer ul a:hover { color: var(--white); }
+.footer-phone {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--white);
+}
+.footer-phone:hover { color: var(--gold-light); }
+.footer-bottom {
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--white-06);
+  color: var(--white-45);
+  font-size: 0.875rem;
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
