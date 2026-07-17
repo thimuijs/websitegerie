@@ -354,11 +354,21 @@ body { padding-bottom: 88px; } /* ruimte voor sticky balk */
   flex-direction: column;
   gap: var(--space-3);
 }
+.hero-grid {
+  display: grid;
+  gap: var(--space-5);
+  align-items: center;
+}
+.hero-photo img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
 @media (min-width: 560px) {
   .hero-ctas { flex-direction: row; }
 }
 @media (min-width: 768px) {
   .hero { padding: var(--space-7) 0; }
+  .hero-grid { grid-template-columns: 1.1fr 1fr; gap: var(--space-6); }
 }
 
 /* ---- Fotografie: strakke rechthoeken, geen filters ---- */
@@ -384,6 +394,30 @@ body { padding-bottom: 88px; } /* ruimte voor sticky balk */
 .photo-strip .photo img {
   aspect-ratio: 1 / 1;
   object-fit: cover;
+}
+
+/* ---- Assortiment ---- */
+.assort-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+@media (min-width: 900px) {
+  .assort-grid { grid-template-columns: repeat(4, 1fr); }
+}
+.assort-card .photo img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+.assort-card h3 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin: var(--space-3) 0 var(--space-1);
+}
+.assort-card p {
+  color: var(--white-70);
+  font-size: 0.9375rem;
+  margin: 0;
 }
 
 .photo-caption {
@@ -441,8 +475,11 @@ body { padding-bottom: 88px; } /* ruimte voor sticky balk */
   gap: var(--space-4);
 }
 .usp {
-  border-top: 1px solid var(--white-12);
-  padding-top: var(--space-4);
+  background: var(--surface-card);
+  border: 1px solid var(--white-12);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-card);
 }
 .usp h3 {
   display: flex;
