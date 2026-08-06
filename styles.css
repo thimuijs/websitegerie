@@ -1,4 +1,4 @@
-/* ==========================================================================
+/* =======================================================================
    Gerie's Visspecialiteiten — styles.css
    Merkgids: antraciet #23262B, goud #C9A227 (schaars), wit. Nunito Sans 300.
    Hoekig (2–4px), geen gradients, ingetogen animatie (120–220ms).
@@ -446,12 +446,25 @@ body { padding-bottom: 88px; } /* ruimte voor sticky balk */
 
 /* ---- Vandaag-blok ---- */
 .today-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background: var(--surface-card);
   border: 1px solid var(--white-12);
   border-radius: var(--radius-md);
   padding: var(--space-5);
   box-shadow: var(--shadow-card);
 }
+/* Zwart-wit foto als achtergrond, sterk gedimd voor leesbaarheid (WCAG AA) */
+.today-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url("afbeeldingen/verse-vis-toonbank.webp") center / cover no-repeat;
+  filter: grayscale(1) brightness(0.34) contrast(0.9);
+}
+.today-card > * { position: relative; }
 .today-card .today-day {
   font-size: 1.375rem;
   margin-bottom: var(--space-1);
