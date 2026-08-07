@@ -383,6 +383,15 @@ body { padding-bottom: 88px; } /* ruimte voor sticky balk */
   display: block;
 }
 
+/* Locatiepagina's: foto 50% kleiner vanaf tablet, volle breedte op mobiel */
+@media (min-width: 768px) {
+   .location-photo {
+      max-width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+   }
+}
+
 .photo-strip {
   display: grid;
   gap: var(--space-3);
