@@ -1,7 +1,8 @@
 /* Gerie's Visspecialiteiten — script.js
-   1. Hamburgermenu
-   2. "Vandaag te vinden in…"-blok (op basis van dag van de week)
-   3. Lucide-iconen initialiseren
+     1. Hamburgermenu
+       2. Sluitingsperiodes (vakantie e.d.)
+         3. "Vandaag te vinden in…"-blok (op basis van dag van de week)
+         4. Lucide-iconen initialiseren
 */
 (function () {
   'use strict';
@@ -17,7 +18,44 @@
     });
   }
 
-  /* ---- 2. Vandaag-blok ---- */
+   /* ---- 2. Sluitingsperiodes ----
+   Voeg hier een regel toe per periode dat de wagen er niet is (vakantie, etc.).
+   Datums in YYYY-MM-DD, "tot" is inclusief. "melding" is optioneel eigen tekstje.
+   Voorbeeld: { van: '2026-08-10', tot: '2026-08-24', melding: 'Wij zijn met vakantie' }
+   */
+   var SLUITINGEN = [
+      ];
+
+   function vandaagISO() {
+      var d = new Date();
+      var mm = String(d.getMonth() + 1).padStart(2, '0');
+      var dd = String(d.getDate()).padStart(2, '0');
+      return d.getFullYear() + '-' + mm + '-' + dd;
+   }
+
+   function huidigeSluiting() {
+      var vandaag = vandaagISO();
+      for (var i = 0; i < SLUITINGEN.length; i++) {
+         var s = SLUITINGEN[i];
+         if (vandaag >= s.van && vandaag <= s.tot) return s;
+      }
+      return null;
+   }
+
+   function formatDatumNL(iso) {
+      var d = new Date(iso + 'T00:00:00');
+      return d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long' });
+   }
+
+   function volgendeDagISO(iso) {
+      var d = new Date(iso + 'T00:00:00');
+      d.setDate(d.getDate() + 1);
+      var mm = String(d.getMonth() + 1).padStart(2, '0');
+      var dd = String(d.getDate()).padStart(2, '0');
+      return d.getFullYear() + '-' + mm + '-' + dd;
+   }
+
+  /* ---- 3. Vandaag-blok ---- */
   // getDay(): 0 = zondag … 6 = zaterdag
   var LOCATIONS = {
     3: {
@@ -55,8 +93,14 @@
     var dayIndex = new Date().getDay();
     var loc = LOCATIONS[dayIndex];
     var html;
+     var sluiting = huidigeSluiting();
 
-    if (loc) {
+    if (sluiting) {
+             html =
+                        '<span class="eyebrow">Tijdelijk gesloten</span>' +
+                        '<p class="today-day">' + (sluiting.melding || 'Wij zijn er even niet') + '</p>' +
+                        '<p class="text-muted" style="margin-bottom:0">Weer aanwezig vanaf ' + formatDatumNL(volgendeDagISO(sluiting.tot)) + '</p>';
+    } else if (loc) {
       // Woensdag t/m zaterdag: toon de locatie van vandaag
       html =
         '<span class="eyebrow">Vandaag te vinden in</span>' +
@@ -85,7 +129,7 @@
     todayEl.innerHTML = html;
   }
 
-  /* ---- 3. Lucide-iconen ---- */
+  /* ---- 4. Lucide-iconen ---- */
   function initIcons() {
     if (window.lucide) { window.lucide.createIcons(); }
   }
