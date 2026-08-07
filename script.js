@@ -24,6 +24,7 @@
    Voorbeeld: { van: '2026-08-10', tot: '2026-08-24', melding: 'Wij zijn met vakantie' }
    */
    var SLUITINGEN = [
+        { van: '2026-07-24', tot: '2026-08-11', melding: 'Wij zijn met vakantie' }
       ];
 
    function vandaagISO() {
