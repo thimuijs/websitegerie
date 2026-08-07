@@ -461,8 +461,8 @@ body { padding-bottom: 88px; } /* ruimte voor sticky balk */
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: url("afbeeldingen/verse-vis-toonbank.webp") center / cover no-repeat;
-  filter: grayscale(1) brightness(0.34) contrast(0.9);
+  background: url("afbeeldingen/tonijn-sashimi.webp") center / cover no-repeat;
+  filter: brightness(0.3) saturate(0.85);
 }
 .today-card > * { position: relative; }
 .today-card .today-day {
