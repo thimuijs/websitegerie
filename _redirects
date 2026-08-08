@@ -1,0 +1,18 @@
+# Oude Wix-URL's doorsturen naar de nieuwe pagina's (permanent, 301)
+# Zo blijft de opgebouwde vindbaarheid in Google behouden.
+
+/hattem       /locaties/hattem/                   301
+/hattem/      /locaties/hattem/                   301
+/spakenburg   /locaties/spakenburg-albert-heijn/  301
+/spakenburg/  /locaties/spakenburg-albert-heijn/  301
+/rijsbergen   /locaties/rijsbergen/               301
+/rijsbergen/  /locaties/rijsbergen/               301
+/bunschoten   /locaties/spakenburg-vomar/         301
+/bunschoten/  /locaties/spakenburg-vomar/         301
+
+# Veelvoorkomende Wix-pagina's die wij niet meer apart hebben
+/contact      /                                   301
+/contact/     /                                   301
+/over-ons     /                                   301
+/over-ons/    /                                   301
+/locaties.html /locaties/                         301
